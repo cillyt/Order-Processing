@@ -7,9 +7,16 @@ public class Order {
     private final String id;
     private final OrderItem[] items;
     private boolean isPaid = false;
-    public Order(String id, OrderItem[] items) {
+    private Email email;
+    public Order(String id, OrderItem[] items, boolean isPaid, Email email) {
         this.id = id;
         this.items = items != null ? Arrays.copyOf(items, items.length): new OrderItem[0];  // defensive copy
+        this.isPaid = isPaid;
+        this.email = email;
+    }
+    public Order(String id, OrderItem[] items) {
+        this(id,items,false,null);
+
     }
 
     public String getId() {
