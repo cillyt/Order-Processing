@@ -1,17 +1,22 @@
 package ua.university;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        OrderService service = new OrderService(new OrderProcessor());
+
+        OrderItem[] items = {
+                new OrderItem("Ноутбук", new Money(30000, "UAH")),
+                new OrderItem("Миша", new Money(500, "USD"))
+        };
+
+        Order order = new Order("001", items);
+        service.createOrder(order);
+
+        service.executeOrder("001", new CardPayment());
+
+        System.out.println("Чи знайшли замовлення? " + service.findById("001").isPresent());
+
+
     }
 }

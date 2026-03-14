@@ -11,6 +11,13 @@ public class Money {
     public double getAmount() {
         return amount;
     }
+    public double setAmount(double amount) {
+        return amount;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
 
     @Override
     public String toString() {
