@@ -3,10 +3,10 @@ package ua.university;
 public class PayPalPayment implements PaymentMethod{
     public void paid(Money amount){
         if(amount.getAmount()>100){
-            System.out.println("Paid by PayPal: " + amount);
+            System.out.println("Сплачено PayPal: " + amount + " " + amount.getCurrency());
         }
         else{
-            System.out.println("Declined"); ////own exception
+            System.out.println("Відхилено");
         }
     }
 }

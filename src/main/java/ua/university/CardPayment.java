@@ -3,11 +3,12 @@ package ua.university;
 public class CardPayment implements PaymentMethod {
 
     public void paid(Money amount){
-        if(amount.getAmount()<=20000 && amount.getAmount()>0){
-            System.out.println("Paid by card: " + amount);
+        if (amount.getAmount()>=20000 && amount.getAmount()>0) {
+            System.err.println("Спроба оплати на суму " + amount.getAmount() + " перевищує ліміт картки.");
+            throw new PaymentLimitException(amount.getAmount());
         }
-        else{
-            System.out.println("Declined"); //// exception own!!!
-        }
+
+        System.out.println("Успішно: " + amount);
     }
-}
+    }
+
